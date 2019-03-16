@@ -1,4 +1,6 @@
 from math import sin
+from interval import interval, inf, imath
+
 
 # Generic class for expressions
 class Expr:
@@ -46,11 +48,26 @@ class Ident(Expr):
         self.range = x
 
 
+# Helper
+def getLip(x):
+    L = 0
+    for c in x:
+        if abs(c.inf) > L:
+            L = c.inf
+        if abs(c.sup) > L:
+            L = c.sup
+    return L
+
 # The sinus function
 class Sin(Expr):
     def __init__(self, eother):
         self.x = eother.x
         self.value = sin(eother.value)
+        y = imath.cos(interval(self.x))
+        # print(self.x)
+        # L = getLip(y)
         L = 1
+        print(L)
         self.L = L * eother.L
         self.compbnd()
+

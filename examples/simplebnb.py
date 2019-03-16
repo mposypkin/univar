@@ -11,8 +11,10 @@ P = []
 P.append(xrange)
 fr = 100000000
 eps = 0.01
-maxlen = 8
-while len(P) > 0 and len(P) <= 80:
+maxsteps = 1000
+steps = 0
+while len(P) > 0 and steps <= maxsteps:
+    steps = steps + 1
     x = P.pop(0)
     e = f(x)
     fr = min(e.value, fr)
@@ -24,4 +26,5 @@ while len(P) > 0 and len(P) <= 80:
         P.append(x1)
         P.append(x2)
 
+print("Steps performed: " + str(steps))
 print(fr)
